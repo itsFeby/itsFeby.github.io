@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Feby Fajar | Portfolio</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            body {
+                background-color: #1b1b1b;
+                color: #e0e0e0;
+                font-family: "Courier New", Courier, monospace;
+                margin: 0;
+                padding: 2rem;
+                overflow-x: hidden;
+            }
+
+            header {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+
+            h1 {
+                font-family: "Press Start 2P", cursive;
+                color: #58a6ff;
+                font-size: 1.8rem;
+            }
+
+            nav a {
+                margin: 0 1rem;
+                text-decoration: none;
+                color: #58a6ff;
+                transition: 0.3s;
+            }
+
+            nav a:hover {
+                color: #f9826c;
+            }
+
+            section {
+                max-width: 800px;
+                margin: auto;
+                opacity: 0;
+                transform: translateY(30px);
+                transition: all 1s ease;
+            }
+
+            section.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .project {
+                background: #2a2a2a;
+                padding: 1rem;
+                margin: 1rem 0;
+                border-left: 4px solid #58a6ff;
+            }
+
+            footer {
+                text-align: center;
+                margin-top: 3rem;
+                font-size: 0.8rem;
+                color: #888;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>ITSFEBY</h1>
+            <p>Oceanography student • Indie coder • Dreaming in binary</p>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </header>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <p>
+                Hi! I'm Feby. I'm a student of oceanography at Diponegoro
+                University with a love for code, coastlines, and coffee. I dream
+                of building a digital ocean where every wave is a line of
+                beautiful logic. I’m currently learning low-level programming
+                and how to survive practical classes without crying (too much).
+            </p>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <p>
+                I don't have anything public yet, but something's bubbling under
+                the surface. Stay tuned, or better yet—follow me on GitHub and
+                watch it unfold.
+            </p>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>
+                🌊 GitHub:
+                <a href="https://github.com/itsFeby" target="_blank">@itsFeby</a
+                ><br />
+                💌 Email: (coming soon—still training my digital pigeon)<br />
+                🪴 Or maybe find me staring at the sea...
+            </p>
+        </section>
+
+        <footer>
+            <p>
+                Made with messy hair, and late night coffee &mdash; &copy; 2025
+                Feby Syarief
+            </p>
+        </footer>
+
+        <script>
+            // Scroll animation - soft like your heart when mama marah tapi kamu minta maaf 💗
+            const sections = document.querySelectorAll("section");
+
+            const revealOnScroll = () => {
+                sections.forEach((section) => {
+                    const top = section.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    if (top < windowHeight - 100) {
+                        section.classList.add("visible");
+                    }
+                });
+            };
+
+            window.addEventListener("scroll", revealOnScroll);
+            window.addEventListener("load", revealOnScroll);
+        </script>
+    </body>
+</html>
