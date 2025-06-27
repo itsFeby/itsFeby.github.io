@@ -23,10 +23,28 @@
                 margin-bottom: 2rem;
             }
 
+            .logo-header {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .logo-img {
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                border: 2px solid #58a6ff;
+                background-color: #2a2a2a;
+                object-fit: cover;
+            }
+
             h1 {
                 font-family: "Press Start 2P", cursive;
                 color: #58a6ff;
                 font-size: 1.8rem;
+                margin = 0;
             }
 
             nav a {
@@ -70,7 +88,10 @@
     </head>
     <body>
         <header>
-            <h1>ITSFEBY</h1>
+            <div class="logo-header">
+                <img src="rurirmbg.png" alt="Feby Icon" class="logo-img" />
+                <h1>ITSFEBY</h1>
+            </div>
             <p
                 id="typing-text"
                 style="color: #f9826c; font-weight: bold; min-height: 2em"
