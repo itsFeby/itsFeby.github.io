@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Feby Fajar | Portfolio</title>
+        <title>Feby Syarief | Portfolio</title>
         <link
             href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
             rel="stylesheet"
@@ -71,6 +71,10 @@
     <body>
         <header>
             <h1>ITSFEBY</h1>
+            <p
+                id="typing-text"
+                style="color: #f9826c; font-weight: bold; min-height: 2em"
+            ></p>
             <p>Oceanography student • Indie coder • Dreaming in binary</p>
             <nav>
                 <a href="#about">About</a>
@@ -118,9 +122,8 @@
         </footer>
 
         <script>
-            // Scroll animation - soft like your heart when mama marah tapi kamu minta maaf 💗
+            // Scroll animation
             const sections = document.querySelectorAll("section");
-
             const revealOnScroll = () => {
                 sections.forEach((section) => {
                     const top = section.getBoundingClientRect().top;
@@ -133,6 +136,35 @@
 
             window.addEventListener("scroll", revealOnScroll);
             window.addEventListener("load", revealOnScroll);
+
+            // ✨ Animasi Ketik Otomatis
+            const typingTarget = document.getElementById("typing-text");
+            const typingTexts = [
+                "Hello, I’m Feby.",
+                "Welcome to my digital ocean.",
+                "Still under construction... like my love life 🧱❤️",
+            ];
+
+            let textIndex = 0;
+            let charIndex = 0;
+
+            function type() {
+                if (charIndex < typingTexts[textIndex].length) {
+                    typingTarget.textContent +=
+                        typingTexts[textIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(type, 60);
+                } else {
+                    setTimeout(() => {
+                        typingTarget.textContent = "";
+                        charIndex = 0;
+                        textIndex = (textIndex + 1) % typingTexts.length;
+                        setTimeout(type, 300);
+                    }, 2000);
+                }
+            }
+
+            window.addEventListener("load", type);
         </script>
     </body>
 </html>
