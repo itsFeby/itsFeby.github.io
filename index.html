@@ -88,8 +88,7 @@
             .corner-image {
                 position: fixed;
                 bottom: 0;
-                width: 150px;
-                opacity: 0.2;
+                width: 250px;
                 z-index: -1;
                 pointer-events: none;
             }
@@ -97,35 +96,8 @@
             .corner-image.left {
                 left: 0;
             }
-
-                        /* 💥 Animasi gelombang kanan */
-            .wave-wrapper {
-                position: fixed;
-                bottom: 0;
+            .corner-image.right {
                 right: 0;
-                width: 200px;
-                height: 150px;
-                overflow: hidden;
-                z-index: -1;
-                pointer-events: none;
-                filter: drop-shadow(0 0 8px #58a6ff); /* opsional efek glow */
-            }
-
-            .wave {
-                width: 300%;
-                height: 100%;
-                transform: rotate(180deg) scaleX(-1);
-            }
-            .wave-container {
-                position: fixed;
-                bottom: 0;
-                right: 0;
-                width: 250px;
-                height: 150px;
-                pointer-events: none;
-                z-index: -1;
-                transform: scaleX(-1);
-                opacity: 0.3;
             }
         </style>
     </head>
@@ -185,31 +157,10 @@
             </p>
         </footer>
 
-        <!-- 💥 Gambar pojok kiri -->
-        <img src="ruri.png" class="corner-image left" />
-
-        <!-- 💥 Animasi gelombang SVG pojok kanan -->
-        <!-- 🌊 Animasi gelombang baru di pojok kanan -->
-        <div class="wave-container">
-            <svg viewBox="0 0 500 150" preserveAspectRatio="none">
-                <path
-                    d="M0.00,49.98 C150.00,150.00 349.87,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
-                    style="stroke: none; fill: #58a6ff; opacity: 0.1"
-                >
-                    <animate
-                        attributeName="d"
-                        dur="10s"
-                        repeatCount="indefinite"
-                        values="
-                            M0.00,49.98 C150.00,150.00 349.87,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z;
-
-                            M0.00,60.00 C180.00,130.00 320.00,-30.00 500.00,60.00 L500.00,150.00 L0.00,150.00 Z;
-
-                            M0.00,49.98 C150.00,150.00 349.87,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
-                    />
-                </path>
-            </svg>
-        </div>
+        <!--  Gambar pojok kiri -->
+        <img src="cat_ryou.png" class="corner-image left" />
+        <!--  Gambar pojok kanan -->
+        <img src="Ryo_Yamada.png" class="corner-image right" />
 
         <script>
             // Scroll animation
