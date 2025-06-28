@@ -116,6 +116,17 @@
                 height: 100%;
                 transform: rotate(180deg) scaleX(-1);
             }
+            .wave-container {
+                position: fixed;
+                bottom: 0;
+                right: 0;
+                width: 250px;
+                height: 150px;
+                pointer-events: none;
+                z-index: -1;
+                transform: scaleX(-1);
+                opacity: 0.3;
+            }
         </style>
     </head>
     <body>
@@ -178,29 +189,23 @@
         <img src="ruri.png" class="corner-image left" />
 
         <!-- 💥 Animasi gelombang SVG pojok kanan -->
-        <div class="wave-wrapper">
-            <svg
-                viewBox="0 0 1440 320"
-                preserveAspectRatio="none"
-                class="wave"
-                xmlns="http://www.w3.org/2000/svg"
-            >
+        <!-- 🌊 Animasi gelombang baru di pojok kanan -->
+        <div class="wave-container">
+            <svg viewBox="0 0 500 150" preserveAspectRatio="none">
                 <path
-                    fill="#58a6ff"
-                    fill-opacity="0.15"
-                    d="M0,192L80,213.3C160,235,320,277,480,272C640,267,800,213,960,186.7C1120,160,1280,160,1360,160L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
+                    d="M0.00,49.98 C150.00,150.00 349.87,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
+                    style="stroke: none; fill: #58a6ff; opacity: 0.1"
                 >
                     <animate
                         attributeName="d"
-                        dur="8s"
+                        dur="10s"
                         repeatCount="indefinite"
                         values="
-                            M0,192L80,213.3C160,235,320,277,480,272C640,267,800,213,960,186.7C1120,160,1280,160,1360,160L1440,160L1440,320L0,320Z;
+                            M0.00,49.98 C150.00,150.00 349.87,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z;
 
-                            M0,160L80,186.7C160,213,320,245,480,250C640,255,800,229,960,192C1120,155,1280,117,1360,101.3L1440,85L1440,320L0,320Z;
+                            M0.00,60.00 C180.00,130.00 320.00,-30.00 500.00,60.00 L500.00,150.00 L0.00,150.00 Z;
 
-                            M0,192L80,213.3C160,235,320,277,480,272C640,267,800,213,960,186.7C1120,160,1280,160,1360,160L1440,160L1440,320L0,320Z
-                        "
+                            M0.00,49.98 C150.00,150.00 349.87,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
                     />
                 </path>
             </svg>
