@@ -14,8 +14,8 @@
                 font-family: "Fira Code", monospace;
                 background-color: #0f172a;
                 color: #00ff9c;
-                position: relative;
                 overflow-x: hidden;
+                position: relative;
             }
 
             .glitch {
@@ -28,7 +28,6 @@
             .glitch::after {
                 content: attr(data-text);
                 position: absolute;
-                top: 0;
                 left: 0;
                 width: 100%;
                 overflow: hidden;
@@ -37,16 +36,16 @@
 
             .glitch::before {
                 animation: flicker 2s infinite ease-in-out;
-                opacity: 0.8;
-                clip-path: inset(0 0 40% 0);
                 color: #00fff2;
+                clip-path: inset(0 0 40% 0);
+                opacity: 0.8;
             }
 
             .glitch::after {
                 animation: flicker 1.7s infinite ease-in-out;
-                opacity: 0.5;
-                clip-path: inset(60% 0 0 0);
                 color: #00b4ff;
+                clip-path: inset(60% 0 0 0);
+                opacity: 0.5;
             }
 
             @keyframes flicker {
@@ -57,26 +56,14 @@
                 10% {
                     opacity: 0.6;
                 }
-                20% {
-                    opacity: 0.2;
-                }
                 30% {
                     opacity: 0.8;
-                }
-                40% {
-                    opacity: 0.3;
                 }
                 50% {
                     opacity: 0.7;
                 }
-                60% {
-                    opacity: 0.4;
-                }
                 70% {
                     opacity: 0.9;
-                }
-                80% {
-                    opacity: 0.3;
                 }
                 90% {
                     opacity: 0.5;
@@ -113,8 +100,8 @@
                 bottom: 0;
                 right: 0;
                 width: 20rem;
-                opacity: 0.25;
                 z-index: -1;
+                opacity: 0.25;
                 pointer-events: none;
             }
 
@@ -131,6 +118,14 @@
         </style>
     </head>
     <body>
+        <!-- ADDITION START: Audio typing -->
+        <audio
+            id="typeSound"
+            src="https://cdn.pixabay.com/download/audio/2022/10/03/audio_a1a5e0a391.mp3?filename=typewriter-1.mp3"
+            preload="auto"
+        ></audio>
+        <!-- ADDITION END -->
+
         <canvas id="matrix-canvas"></canvas>
         <img src="Ryo_bg.png" alt="Ryo Corner" id="ryo-bg" />
 
@@ -163,9 +158,12 @@
                     class="w-32 h-32 mx-auto rounded-full border-4 border-green-400 shadow-lg"
                 />
                 <p class="mt-4 text-sm text-green-400">root@feby:~$</p>
-                <h1 class="text-3xl font-bold glitch" data-text="Feby Syarief">
-                    Feby Syarief
-                </h1>
+                <!-- ADDITION START: Auto Typing Placeholder -->
+                <h1
+                    id="auto-type"
+                    class="text-lg mt-2 text-green-300 font-mono"
+                ></h1>
+                <!-- ADDITION END -->
                 <p class="mt-4">
                     Oceanography Student • Indie Coder<br />Currently vibing
                     with C++ and cold coffee ☕
@@ -269,6 +267,7 @@
         </section>
 
         <script>
+            // Matrix effect
             const canvas = document.getElementById("matrix-canvas");
             const ctx = canvas.getContext("2d");
             canvas.height = window.innerHeight;
@@ -290,9 +289,8 @@
                     if (
                         drops[i] * fontSize > canvas.height &&
                         Math.random() > 0.975
-                    ) {
+                    )
                         drops[i] = 0;
-                    }
                     drops[i]++;
                 }
             }
@@ -302,6 +300,22 @@
                 canvas.width = window.innerWidth;
             });
 
+            // Fade-in observer
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("visible");
+                        }
+                    });
+                },
+                { threshold: 0.1 },
+            );
+            document
+                .querySelectorAll(".fade-in")
+                .forEach((el) => observer.observe(el));
+
+            // Fake Terminal
             const terminal = document.getElementById("fake-terminal");
             terminal.addEventListener("keydown", (e) => {
                 if (e.key === "Enter") {
@@ -335,24 +349,34 @@
                         response = `bash: ${last}: command not found`;
                     }
                     terminal.value += `\n${response}\n`;
+                    playSound();
                     e.preventDefault();
                 }
             });
 
-            const observer = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add("visible");
-                        }
-                    });
-                },
-                { threshold: 0.1 },
-            );
+            // ADDITION: Play typing sound
+            function playSound() {
+                const audio = document.getElementById("typeSound");
+                audio.currentTime = 0;
+                audio.play();
+            }
 
-            document
-                .querySelectorAll(".fade-in")
-                .forEach((el) => observer.observe(el));
+            // ADDITION: Auto typing effect
+            const autoTypeText = "Hello, I'm Feby. Welcome to my terminal.";
+            let i = 0;
+            const typeSpeed = 60;
+            const typeTarget = document.getElementById("auto-type");
+
+            function typeLine() {
+                if (i < autoTypeText.length) {
+                    typeTarget.innerHTML += autoTypeText.charAt(i);
+                    playSound();
+                    i++;
+                    setTimeout(typeLine, typeSpeed);
+                }
+            }
+
+            window.addEventListener("load", typeLine);
         </script>
     </body>
 </html>
